@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>://m</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+		body {
+			background-color: #2e2e2e;
+			font-family: 'Consolas', 'Lucida Console', 'Courier New', Courier, monospace;
+			font-size: 14px;
+			color: #fff;
+			margin: 5;
+			padding: 5;
+			overflow: hidden; /* Hide scrollbars */
+		}
+		
+		.container {
+			display: flexbox;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			height: 0vh;
+			box-sizing: border-box;
+			padding: 0px;
+		}
+		
+		.column {
+			flex-basis: 30%;
+			text-align: center;
+			padding: 50px;
+		}
+		
+		.hotlink {
+			display: block;
+			margin: 10px; 
+			padding: 10px;
+			background-color: #323232;
+			color: #777;
+			text-decoration: none;
+			font-weight: none;
+			border-radius: 7px;
+			transition: background-color 0.4s ease;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 95%;
+		}
+		
+		.hotlink:hover {
+			background-color: #222222;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="column">
+			<a class="hotlink" href="http://192.168.0.142:8181">/local/server/</a>
+			<a class="hotlink" href="http://192.168.0.1">/local/network/</a>
+			<a class="hotlink" href="https://dwtlab.online/ai2">/dwtlab/ai/</a>
+			<a class="hotlink" href="https://dwtlab.online/index">/dwtlab/main/</a>
+		</div>
+		<div class="column">
+			<a class="hotlink" href="https://chat.openai.com">/tools/gpt/</a>
+			<a class="hotlink" href="https://outlook.office.com">/work/comm/</a>
+			<a class="hotlink" href="https://lighthouse2.psav.com/schedule">/work/schedule/</a>
+			<a class="hotlink" href="https://n21.ultipro.com">/work/timecard/</a>
+		</div>
+		<div class="column">
+			<a class="hotlink" href="https://showrss.info">/tor/rss/</a>
+			<a class="hotlink" href="https://1337x.to/home/">/tor/1337x/</a>
+			<a class="hotlink" href="https://rarbg.to">/tor/rarbg/</a>
+			<a class="hotlink" href="https://thepiratebay.org">/tor/tpb/</a>
+		</div>
+	</div>
+</body>
+</html>
