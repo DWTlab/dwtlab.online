@@ -1,3 +1,7 @@
 User-agent: *
 Disallow: /int/
 Disallow: /6
+Disallow: /admin
+Disallow: /m
+Disallow: /ai2
+Disallow: /ai
