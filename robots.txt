@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /int/
+Disallow: /int
 Disallow: /6
 Disallow: /admin
 Disallow: /m
