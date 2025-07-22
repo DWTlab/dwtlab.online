@@ -1,0 +1,84 @@
+/* Final blended style for links page */
+body {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    line-height: 1.6;
+    margin: 0;
+    padding: 10px;
+    background-color: #2e2e2e; /* Original grey background */
+    color: #c0c0c0; /* Original text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.links-container {
+    display: grid;
+    grid-auto-flow: column; /* Ensure items fill columns first */
+    grid-template-rows: repeat(6, auto); /* 6 rows, auto height */
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 10px; /* Spacing between grid items */
+    max-width: 950px;
+    margin: 0 auto;
+    justify-items: start; /* Align items to the start of their grid area */
+    max-height: 280px; /* Explicitly set max-height for 6 rows */
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: #e37705; /* Original orange color */
+    padding: 10px 0; /* Remove side padding, adjust vertical */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%; /* Take full width of grid column */
+    transition: transform 0.2s ease-out; /* Add transition for hover effect */
+}
+
+.link-item:hover {
+    transform: translateY(-3px); /* Add raise animation on hover */
+}
+
+.link-item::before {
+    content: '~/$'; /* Updated terminal prompt prefix */
+    margin-right: 10px;
+    color: #555; /* Grey color for the prompt */
+}
+
+@media (max-width: 992px) {
+    #links-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0; /* Remove padding that might interfere with centering */
+    }
+
+    .links-container {
+        grid-template-columns: 1fr; /* Single column on small screens */
+        grid-auto-flow: row; /* Ensure items stack vertically */
+        max-height: none;
+        gap: 10px; /* Adjusted vertical gap */
+    }
+
+    .link-item {
+        width: 100%;
+        padding: 8px 0; /* Adjusted vertical padding */
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) {
+  body {
+    zoom: 0.9;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  body {
+    zoom: 1.1;
+    overflow: hidden;
+  }
+}

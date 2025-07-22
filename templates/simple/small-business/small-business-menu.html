@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Grind | Our Menu</title>
+    <style>
+        /* --- Google Font Import --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        /* --- Reset & Basic Styles --- */
+        :root {
+            --primary-color: #6F4E37; /* Coffee Brown */
+            --secondary-color: #A0522D; /* Sienna */
+            --background-light: #F5F5DC; /* Beige */
+            --background-white: #ffffff;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; text-align: center; margin-top: 8rem; color: var(--primary-color); }
+        h2 { font-size: 2.5rem; color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 0.5rem; margin-top: 3rem; }
+        h3 { font-size: 1.5rem; }
+
+        p { margin-bottom: 1rem; }
+        a { text-decoration: none; color: var(--primary-color); }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: var(--background-white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav a {
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hamburger Menu --- */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-dark);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- Menu Page Specifics --- */
+        .menu-section {
+            padding: 2rem 0 5rem;
+        }
+
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 1.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .item-details p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+            max-width: 80%;
+        }
+
+        .item-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .footer-right-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .designer-credit {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .template-copyright {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .footer-icon {
+            height: 23px;
+            vertical-align: -5px;
+            margin-left: 5px;
+        }
+
+        /* --- Scroll Animation --- */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(100px); /* Increased distance significantly */
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Longer, more dramatic transition */
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                margin-top: 6rem;
+            }
+
+            .main-header {
+                padding: 0.5rem 0;
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--background-white);
+                width: 100%;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+
+            .main-nav.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="./small-business.html" class="logo">The Daily Grind</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="./small-business.html">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="menu-section container">
+            <h1>Our Menu</h1>
+
+            <!-- Coffee Section -->
+            <section id="coffee-menu" class="menu-category scroll-reveal">
+                <h2>Coffee & Espresso</h2>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>House Blend Drip Coffee</h3>
+                        <p>Our signature medium roast, smooth and balanced.</p>
+                    </div>
+                    <div class="item-price">$3.00</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Espresso</h3>
+                        <p>A perfect, rich shot of our finest espresso blend.</p>
+                    </div>
+                    <div class="item-price">$3.50</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Latte / Cappuccino</h3>
+                        <p>Espresso with perfectly steamed milk. Add a flavor shot for $0.50.</p>
+                    </div>
+                    <div class="item-price">$4.50</div>
+                </div>
+                 <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Americano</h3>
+                        <p>Espresso shots topped with hot water, creating a light layer of crema.</p>
+                    </div>
+                    <div class="item-price">$4.00</div>
+                </div>
+            </section>
+
+            <!-- Pastries Section -->
+            <section id="pastries-menu" class="menu-category scroll-reveal">
+                <h2>Freshly Baked Pastries</h2>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Butter Croissant</h3>
+                        <p>Flaky, buttery, and baked to golden perfection.</p>
+                    </div>
+                    <div class="item-price">$3.50</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Blueberry Muffin</h3>
+                        <p>Packed with fresh blueberries and a hint of lemon.</p>
+                    </div>
+                    <div class="item-price">$3.75</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Chocolate Chip Cookie</h3>
+                        <p>Classic and chewy, just like grandma used to make.</p>
+                    </div>
+                    <div class="item-price">$2.50</div>
+                </div>
+            </section>
+            
+             <!-- Sandwiches Section -->
+            <section id="sandwiches-menu" class="menu-category scroll-reveal">
+                <h2>Gourmet Sandwiches</h2>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Turkey & Swiss</h3>
+                        <p>Roasted turkey, swiss cheese, lettuce, and tomato on sourdough.</p>
+                    </div>
+                    <div class="item-price">$9.50</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Caprese Panini</h3>
+                        <p>Fresh mozzarella, tomatoes, and basil pesto pressed on ciabatta.</p>
+                    </div>
+                    <div class="item-price">$10.00</div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2025 The Daily Grind. All Rights Reserved.</p>
+        <div class="footer-right-content">
+            <p class="designer-credit">Website lovingly <a href="https://dwtlab.online" style="text-decoration: none;"><span style="color: #e37705; font-size: 1.1em;">DesignedWithTrash</span> <img src="../../../assets/images/dwt-icon.png" alt="DWTlabs icon" class="footer-icon"></a></p>
+            <p class="template-copyright">Template Copyright &copy; 2025 DesignedWithTrash Labs. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Hamburger Menu
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburger.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

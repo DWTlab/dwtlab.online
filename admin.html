@@ -1,38 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>://admin</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM BREACH DETECTED</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background-color: #000; /* Black background */
+            color: #0f0; /* Green text for hacker vibe */
+            font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+            overflow-y: auto; /* Allow vertical scrolling */
+            position: relative; /* For positioning matrix-container */
+        }
+
+        #matrix-container {
+            position: fixed; /* Keep matrix fixed in the background */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind other content */
+        }
+
+        #matrix-canvas {
+            display: block;
+        }
+        .hacker-message {
+            border: 2px solid #0f0; /* Green border */
+            padding: 20px 40px; /* Decreased top/bottom padding, kept side padding */
+            max-width: 700px;
+            margin: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+            background-color: rgba(0, 50, 0, 0.8); /* A lot more opaque green background */
+            z-index: 1; /* Ensure message is above canvas */
+        }
+        h1 {
+            color: #0f0;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 3px rgba(0, 255, 0, 0.3); /* Barely glowing green text shadow */
+            overflow: hidden; /* Ensures the text is hidden until typed */
+            white-space: nowrap; /* Keeps the text on a single line */
+            border-right: .5em solid #0f0; /* The blinking block cursor */
+            display: inline-block; /* Allow centering with text-align on parent */
+            max-width: 23ch; /* Increased slightly to accommodate full text and cursor */
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #0f0; }
+        }
+        p {
+            font-size: 1.1em; /* Increased font size */
+            line-height: 1.6;
+            color: #0f0;
+            position: relative;
+        }
+
+        .glitch-active {
+            animation: glitch-text 0.5s;
+        }
+
+        .initial-typing {
+            animation: 
+                typing 3.5s steps(22, end) forwards,
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes glitch-text {
+            0% { text-shadow: 0.05em 0 0 rgba(0,255,0,0.5), -0.02em -0.04em 0 rgba(0,255,0,0.5), 0.02em 0.05em 0 rgba(0,255,0,0.5); }
+            14% { text-shadow: -0.05em -0.02em 0 rgba(0,255,0,0.5), 0.02em 0.03em 0 rgba(0,255,0,0.5), -0.04em -0.03em 0 rgba(0,255,0,0.5); }
+            28% { text-shadow: 0.02em 0.05em 0 rgba(0,255,0,0.5), -0.05em -0.02em 0 rgba(0,255,0,0.5), 0.04em 0.03em 0 rgba(0,255,0,0.5); }
+            42% { text-shadow: -0.02em -0.05em 0 rgba(0,255,0,0.5), 0.05em 0.02em 0 rgba(0,255,0,0.5), -0.03em 0.04em 0 rgba(0,255,0,0.5); }
+            56% { text-shadow: 0.05em 0.02em 0 rgba(0,255,0,0.5), -0.02em -0.03em 0 rgba(0,255,0,0.5), 0.03em -0.04em 0 rgba(0,255,0,0.5); }
+            70% { text-shadow: -0.05em 0.03em 0 rgba(0,255,0,0.5), 0.02em -0.04em 0 rgba(0,255,0,0.5), -0.03em 0.05em 0 rgba(0,255,0,0.5); }
+            84% { text-shadow: 0.02em -0.05em 0 rgba(0,255,0,0.5), -0.05em 0.02em 0 rgba(0,255,0,0.5), 0.04em -0.03em 0 rgba(0,255,0,0.5); }
+            100% { text-shadow: 0.05em 0 0 rgba(0,255,0,0.5), -0.02em -0.04em 0 rgba(0,255,0,0.5), 0.02em 0.05em 0 rgba(0,255,0,0.5); }
+        }
+
+        @keyframes glitch-box {
+            0% { transform: translate(0, 0); border-color: #0f0; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+            20% { transform: translate(-1px, 1px); border-color: #0a0; box-shadow: 0 0 11px rgba(0, 200, 0, 0.4); }
+            40% { transform: translate(1px, -1px); border-color: #0f0; box-shadow: 0 0 9px rgba(0, 255, 0, 0.25); }
+            60% { transform: translate(-0.5px, 0.5px); border-color: #0a0; box-shadow: 0 0 10.5px rgba(0, 200, 0, 0.35); }
+            80% { transform: translate(0.5px, -0.5px); border-color: #0f0; box-shadow: 0 0 9.5px rgba(0, 255, 0,.3); }
+            100% { transform: translate(0, 0); border-color: #0f0; box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em; /* Smaller heading on mobile */
+                white-space: normal; /* Allow heading to wrap */
+                border-right: none; /* Remove cursor for wrapped text */
+                animation: none; /* Disable typing animation for simplicity */
+            }
+            .hacker-message {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-	<div class="container">
-		<div class="column">
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="/int/hax.png">/RESTRICTED/ReSTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-		</div>
-		<div class="column">
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-		</div>
-		<div class="column">
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-			<a class="hotlink" href="#">/RESTRICTED/RESTRICTED/</a>
-		</div>
-	</div>
-	<div class="footer-container">
-		<div class="footer">
-		  <a class="hotlink" href="/6"></a>
-		  <a class="hotlink" href="/index">1</a>
-		  <a class="hotlink" href="/2">2</a>
-		  <a class="hotlink" href="/ai">ai</a>
-		  <a class="hotlink" href="/6"></a>
-		</div>
-	  </div>
+    <div id="matrix-container">
+        <canvas id="matrix-canvas"></canvas>
+    </div>
+    
+    <div class="hacker-message">
+        <h1>SYSTEM BREACH DETECTED</h1>
+        <p data-text="Intruder detected. Your unsuccessful attempt to penetrate our secure infrastructure has only provided us with a new dataset. We appreciate your unwitting contribution.">Intruder detected. Your unsuccessful attempt to penetrate our secure infrastructure has only provided us with a new dataset. We appreciate your unwitting contribution.</p>
+        
+        <p class="glitch-active glitch-text-second-p" data-text="Please be advised that continued unauthorized presence may lead to unexpected system reconfigurations, including, but not limited to, the irreversible encryption of your cat videos, an automatic subscription to a newsletter about competitive birdwatching, or the immediate re-provisioning of your internet connection to a vintage dial-up modem, effective upon your next login.">Please be advised that continued unauthorized presence may lead to unexpected system reconfigurations, including, but not limited to, the irreversible encryption of your cat videos, an automatic subscription to a newsletter about competitive birdwatching, or the immediate re-provisioning of your internet connection to a vintage dial-up modem, effective upon your next login.</p>
+        
+        <p class="glitch-active glitch-header-style-p" data-text="Proceed with caution, or don't.">Proceed with caution, or don't.</p>
+    </div>
+    <script>
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const chars = latin + nums + '       '; // Added spaces for more whitespace
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0'; // Green text
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Reinitialize drops array on resize to prevent issues
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+        });
+
+        // Existing glitch script
+        function applyGlitch(element) {
+            element.classList.add('glitch-active');
+            setTimeout(() => {
+                element.classList.remove('glitch-active');
+            }, 600); // Glitch duration
+        }
+
+        function randomGlitch(element, minInterval, maxInterval) {
+            if (!element) return; // Ensure element exists
+
+            const randomTime = Math.floor(Math.random() * (maxInterval - minInterval + 1)) + minInterval;
+            
+            setTimeout(() => {
+                applyGlitch(element);
+                randomGlitch(element, minInterval, maxInterval);
+            }, randomTime);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const h1Element = document.querySelector('.hacker-message h1');
+            if (h1Element) {
+                h1Element.classList.add('initial-typing');
+            }
+
+            randomGlitch(document.querySelector('.hacker-message p:first-of-type'), 4000, 8000); // Top text: 4s to 8s
+            randomGlitch(document.querySelector('.hacker-message p.glitch-text-second-p'), 4500, 10000); // Second paragraph: 4.5s to 10s
+            randomGlitch(document.querySelector('.hacker-message p.glitch-header-style-p'), 5000, 15000); // "Proceed with caution" text: 5s to 15s
+        });
+    </script>
 </body>
 </html>

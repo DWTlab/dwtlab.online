@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artimus Maximus | Art & Design</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #1E1E2E; /* Catppuccin Mocha Base */
+            color: #CDD6F4; /* Catppuccin Mocha Text */
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        /* Header */
+        header {
+            background: #181825; /* Catppuccin Mocha Mantle */
+            color: #CDD6F4; /* Catppuccin Mocha Text */
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header a {
+            color: #CDD6F4; /* Catppuccin Mocha Text */
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover {
+            color: #A6E3A1; /* Catppuccin Mocha Green */
+        }
+
+        header ul {
+            padding: 0;
+            list-style: none;
+            text-align: right;
+            margin: 0;
+        }
+
+        header li {
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #CDD6F4;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header #branding {
+                float: none;
+            }
+
+            header nav {
+                float: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links-container {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #181825;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .nav-links-container.active {
+                display: flex;
+            }
+
+            header ul {
+                text-align: center;
+                width: 100%;
+            }
+
+            header li {
+                display: block;
+                padding: 10px 0;
+            }
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        header #branding .highlight {
+            color: #A6E3A1; /* Catppuccin Mocha Green */
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 500px;
+            background: url('../assets/images/templates/artist/Hero-Artist.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: #CDD6F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .hero-text-box {
+            background: rgba(30, 30, 46, 0.7);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(205, 214, 244, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #A6E3A1;
+            color: #1E1E2E;
+            padding: 12px 25px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #7F849C;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            background: #1E1E2E;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #CDD6F4;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #A6E3A1;
+            margin: 10px auto 0;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 0px;
+            justify-content: center;
+        }
+
+        .about-item {
+            color: #CDD6F4;
+            padding: 40px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .about-item > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-item-1 {
+            background-color: #B4BEFE;
+        }
+
+        .about-item-2 {
+            background-color: #A6E3A1;
+        }
+
+        .about-item h3 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #CDD6F4;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .about-item p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #A6ADC8;
+        }
+
+        /* Skills Section */
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(120px, auto);
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .skill-item {
+            padding: 30px;
+            color: #45475A;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .skill-item-1 { background-color: #B4BEFE; }
+        .skill-item-2 { background-color: #F2CDCD; }
+        .skill-item-3 { background-color: #F5C2E7; }
+        .skill-item-4 { background-color: #CBA6F7; grid-column: span 2; }
+        .skill-item-5 { background-color: #F38BA8; }
+        .skill-item-6 { background-color: #EBA0AC; }
+        .skill-item-7 { background-color: #FAB387; grid-column: span 2; }
+        .skill-item-8 { background-color: #F9E2AF; }
+        .skill-item-9 { background-color: #A6E3A1; grid-column: span 2; }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .portfolio-item {
+            background: #181825;
+            padding: 0;
+            width: 300px;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-text-content {
+            padding: 20px;
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-size: cover;
+            background-position: center;
+            color: #CDD6F4;
+        }
+
+        .portfolio-text-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+
+        .portfolio-text-content > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-text-content h3 {
+            color: #CDD6F4;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-text-content p {
+            color: #A6ADC8;
+            flex-grow: 1;
+        }
+
+        .portfolio-text-content .button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            width: auto;
+        }
+
+        .portfolio-bg-1 { background-image: url('../assets/images/templates/artist/MusicVideo.jpg'); }
+        .portfolio-bg-2 { background-image: url('../assets/images/templates/artist/LiveShow.jpg'); }
+        .portfolio-bg-3 { background-image: url('../assets/images/templates/artist/Documentary.jpg'); }
+        .portfolio-bg-4 { background-image: url('../assets/images/templates/artist/Intreactive.jpg'); }
+        .portfolio-bg-5 { background-image: url('../assets/images/templates/artist/Photography.jpg'); }
+
+        .portfolio-item-1 h3 { color: #F5E0DC; }
+        .portfolio-item-2 h3 { color: #F2CDCD; }
+        .portfolio-item-3 h3 { color: #F5C2E7; }
+        .portfolio-item-4 h3 { color: #CBA6F7; }
+        .portfolio-item-5 h3 { color: #F38BA8; }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background: #313244;
+        }
+
+        .contact-form p { margin-bottom: 15px; }
+        .contact-form label { display: block; margin-bottom: 8px; font-weight: bold; color: #CDD6F4; }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #45475A;
+            font-size: 1em;
+        }
+        .contact-form textarea { resize: vertical; }
+        .contact-form button { width: 100%; padding: 12px; border: none; cursor: pointer; font-size: 1.1em; background: #A6E3A1; }
+
+        /* Footer */
+        footer {
+            padding: 10px 30px;
+            margin-top: 0;
+            color: #CDD6F4;
+            background-color: #181825;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+        }
+        .designer-credit, .template-copyright { font-size: 0.9em; color: #A6ADC8; }
+        .footer-icon { height: 23px; vertical-align: -5px; margin-left: 5px; }
+        .footer-right-content { display: flex; flex-direction: column; align-items: flex-end; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header #branding, header nav { float: none; text-align: center; }
+            header li { display: block; padding: 10px 0; }
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1em; }
+            .about-content, .skills-list, .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-item { width: calc(100% - 40px); }
+            .skill-item-4, .skill-item-7, .skill-item-9 { grid-column: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Artimus</span> Maximus</h1>
+            </div>
+            <button class="hamburger" aria-label="Toggle navigation menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="nav-links-container">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-text-box">
+            <h1>I Am <span style="color: #A6E3A1;">Artimus Maximus</span></h1>
+            <p>A passionate creative professional dedicated to captivating audiences and bringing visions to life.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-item about-item-1">
+                    <h3>Who I Am</h3>
+                    <p>With a deep-rooted passion for visual and auditory arts, I strive to create impactful and memorable experiences. My journey has been driven by a desire to connect, inspire, and evoke emotion through my craft.</p>
+                </div>
+                <div class="about-item about-item-2">
+                    <h3>My Philosophy</h3>
+                    <p>I believe in the power of creativity to transcend boundaries and tell compelling stories. Every project is an opportunity to explore new horizons, push artistic limits, and deliver something truly unique and resonant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-list">
+                <div class="skill-item skill-item-1">
+                    <h3>Performance & Stagecraft</h3>
+                    <p>Live Performance, Stage Presence, Choreography, Vocal Training, Instrument Mastery</p>
+                </div>
+                <div class="skill-item skill-item-2">
+                    <h3>Visual Arts & Media</h3>
+                    <p>Digital Painting, Photography, Video Editing, Graphic Design, Animation</p>
+                </div>
+                <div class="skill-item skill-item-3">
+                    <h3>Music Production & Sound</h3>
+                    <p>Composition, Audio Engineering, Sound Design, Mixing & Mastering, Live Sound</p>
+                </div>
+                <div class="skill-item skill-item-5">
+                    <h3>Event Management & Curation</h3>
+                    <p>Planning, Logistics, Artist Liaison, Venue Coordination, Promotion</p>
+                </div>
+                <div class="skill-item skill-item-6">
+                    <h3>Digital Marketing & Outreach</h3>
+                    <p>Social Media Strategy, Content Marketing, SEO Basics, Email Campaigns, Audience Engagement</p>
+                </div>
+                <div class="skill-item skill-item-4">
+                    <h3>Creative Writing & Storytelling</h3>
+                    <p>Scriptwriting, Lyricism, Narrative Development, Copywriting, Blogging</p>
+                </div>
+                <div class="skill-item skill-item-8">
+                    <h3>Photography & Videography</h3>
+                    <p>Composition, Lighting, Post-production, Drone Operation, Storyboarding</p>
+                </div>
+                <div class="skill-item skill-item-7">
+                    <h3>Client Relations & Communication</h3>
+                    <p>Consultation, Feedback Integration, Presentation Skills, Negotiation, Relationship Building</p>
+                </div>
+                <div class="skill-item skill-item-9">
+                    <h3>Teaching & Mentorship</h3>
+                    <p>Curriculum Development, Workshop Facilitation, Public Speaking, Coaching, Feedback</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2>My Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-text-content portfolio-bg-1 portfolio-item-1">
+                        <h3>"Echoes of the City" Album Art</h3>
+                        <p>Designed captivating album artwork for an indie band, blending urban landscapes with abstract musical motifs.</p>
+                        <a href="#" class="button">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-text-content portfolio-bg-2 portfolio-item-2">
+                        <h3>"Midnight Serenade" Live Show</h3>
+                        <p>Choreographed and performed a dynamic dance piece for a theatrical production, integrating light and sound design.</p>
+                        <a href="#" class="button">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-text-content portfolio-bg-3 portfolio-item-3">
+                        <h3>"The Artist's Journey" Documentary</h3>
+                        <p>Edited and produced a short documentary film showcasing the creative process of a local sculptor.</p>
+                        <a href="#" class="button">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-text-content portfolio-bg-4 portfolio-item-4">
+                        <h3>"Rhythmic Canvas" Interactive Installation</h3>
+                        <p>Developed an interactive art piece combining motion sensors, projected visuals, and generative music.</p>
+                        <a href="#" class="button">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-text-content portfolio-bg-5 portfolio-item-5">
+                        <h3>"Urban Echoes" Photography Series</h3>
+                        <p>A collection of street photography capturing the hidden beauty and untold stories of city life.</p>
+                        <a href="#" class="button">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-form">
+                <p>Feel free to reach out to discuss your project or just say hello!</p>
+                <form action="#" method="POST">
+                    <p>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </p>
+                    <p>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </p>
+                    <p>
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </p>
+                    <p>
+                        <button type="submit" class="button">Send Message</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="white-space: nowrap; color: #A6E3A1;">&copy; 2025 Artimus Maximus</p>
+        <div class="footer-right-content">
+            <p class="designer-credit">Website lovingly <a href="https://dwtlab.online" style="text-decoration: none;"><span style="color: #e37705; font-size: 1.1em;">DesignedWithTrash</span> <img src="../assets/images/dwt-icon.png" alt="DWTlabs icon" class="footer-icon"></a></p>
+            <p class="template-copyright">Template Copyright &copy; 2025 DesignedWithTrash Labs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile navigation toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinksContainer = document.querySelector('.nav-links-container');
+
+        hamburger.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked (for mobile)
+        document.querySelectorAll('.nav-links-container a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

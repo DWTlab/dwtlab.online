@@ -1,0 +1,486 @@
+/* Accent Color: #ff8700 */
+/* Old Accent Color: #e37705 */
+body {
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #2e2e2e;
+    color: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h3 {
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2 {
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #555;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    color: #ff8700; /* Swapped color */
+    transition: color 0.3s ease;
+}
+
+h2:hover {
+    color: #c0c0c0; /* Swapped hover color */
+}
+
+.page-header-title {
+    font-size: 2.8rem; /* Increased size */
+    margin-bottom: 0.5rem;
+    border-right: 0.4em solid #ff8700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center; /* Center the title */
+    display: block; /* Ensure it takes full width for centering */
+    width: fit-content; /* Adjust width for typing animation */
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
+}
+
+/* Specific animations for each page */
+#web-design-title {
+    animation: typing-design 2.5s steps(25, end), blink-caret .75s step-end infinite;
+}
+
+#website-management-title {
+    animation: typing-management 1.8s steps(18, end), blink-caret .75s step-end infinite;
+}
+
+#it-support-title {
+    animation: typing-it-support 1.7s steps(17, end), blink-caret .75s step-end infinite;
+}
+
+@media (max-width: 768px) {
+    .page-header-title {
+        font-size: 2rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #ff8700;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/* Header & Navigation */
+header {
+    background: #2e2e2e;
+    padding: 1.5rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #444;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo img {
+    height: 40px;
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #c0c0c0;
+    font-weight: 500;
+}
+
+/* Main Content & Sections */
+main {
+    padding-top: 25px; /* Reduced padding above hero section by 75% */
+    flex: 1;
+}
+
+section {
+    padding: 30px 5%; /* Reduced vertical padding */
+    text-align: center;
+}
+
+#service-page {
+    padding-top: 120px; /* Add padding to push content below fixed header on service pages */
+}
+
+.service-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    border: 1px solid #444;
+    background-color: #222;
+    text-align: left;
+}
+
+hr {
+    border: none;
+    border-top: 1px dashed #555;
+    margin: 40px 0;
+}
+
+/* Hero Section */
+#hero {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo-section {
+    text-align: center;
+    padding: 10px 0; /* Reduced vertical padding by 75% */
+}
+
+.centered-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 150px; /* Adjust size as needed */
+    height: auto;
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    border-right: 0.4em solid #ff8700;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 1.9s steps(19, end), blink-caret .75s step-end infinite;
+    color: #ff8700;
+}
+
+/* Typing and cursor effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes typing-design {
+  from { width: 0 }
+  to { width: 25ch; }
+}
+
+@keyframes typing-management {
+  from { width: 0 }
+  to { width: 18ch; }
+}
+
+@keyframes typing-it-support {
+  from { width: 0 }
+  to { width: 17ch; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ff8700; }
+}
+
+
+/* About Section */
+#about p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* Services Section */
+#services {
+    margin-top: 200px; /* Increased space above the services section */
+}
+
+.service-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+/* Make service cards clickable */
+.service-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Allow card inside to grow */
+}
+
+.card {
+    background: transparent;
+    padding: 2rem;
+    border: 1px solid #555;
+    border-radius: 0;
+    flex-basis: 300px;
+    flex-grow: 1;
+    max-width: 350px;
+    text-align: left;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translate(-5px, -5px);
+    border-color: #ff8700;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #ff8700;
+}
+
+/* Contact Section */
+#contact p {
+    font-size: 1.1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background: transparent;
+    color: #ff8700;
+    padding: 12px 25px;
+    border: 1px solid #ff8700;
+    border-radius: 0;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #ff8700;
+    color: #fff;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: #ccc;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #444;
+}
+
+.template-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+
+.coming-soon-label {
+    font-size: 0.7em;
+    background-color: #ff8700;
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .service-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        margin-bottom: 20px; /* Add space between stacked cards */
+    }
+}
+
+.centered-links-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); /* Adjust for footer height, assuming 80px for footer */
+    padding-top: 0; /* Ensure no extra padding pushes it down */
+}
+
+/* Links Page Specific Styles */
+#links-hero {
+    min-height: 30vh; /* Slightly smaller hero for links page */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#links-title {
+    animation: typing-links 1.2s steps(8, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing-links {
+  from { width: 0 }
+  to { width: 8ch; }
+}
+
+#links-section {
+    padding: 40px 5%;
+    text-align: center;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 350px; /* Adjust this value based on desired number of rows per column */
+    gap: 10px; /* Slightly reduced gap */
+    max-width: 900px; /* Increased max-width for 3 columns */
+    margin: 0 auto;
+    align-content: center; /* Center the columns within the container */
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #ff8700;
+    padding: 10px 15px; /* Smaller padding */
+    border: 1px solid #555;
+    border-radius: 0;
+    font-weight: bold;
+    font-size: 1rem; /* Slightly smaller font size */
+    text-align: center; /* Ensure text is centered */
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    width: 200px; /* Fixed width for uniform size */
+    flex-shrink: 0; /* Prevent shrinking */
+    flex-grow: 0; /* Prevent growing */
+}
+
+.link-item:hover {
+    transform: translate(-5px, -5px);
+    border-color: #ff8700;
+    background-color: #ff8700;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    #links-title {
+        font-size: 2rem;
+        animation: none;
+        border-right: none;
+    }
+    .link-item {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) {
+  body {
+    zoom: 0.9;
+  }
+}
+
+/* Grid Gallery */
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+.grid-gallery img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Masonry Gallery */
+.masonry-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 5px;
+}
+.masonry-gallery-item--2x2 {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.masonry-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #ff8700;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 2rem;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+.prev {
+    left: 10px;
+}
+.next {
+    right: 10px;
+}
+
+/* Featured Image Gallery */
+.featured-image-gallery .featured-image-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+.featured-image-gallery .featured-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+.featured-image-gallery .thumbnail-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+.featured-image-gallery .thumbnail-grid img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.uniform-height-cards .card {
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+}

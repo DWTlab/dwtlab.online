@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Renovations | Quality Craftsmanship</title>
+    <style>
+        /* --- Google Font Import --- */
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Roboto:wght@400;700&display=swap');
+
+        /* --- Reset & Basic Styles --- */
+        :root {
+            --primary-color: #FFC107; /* Bold Yellow */
+            --secondary-color: #212121; /* Dark Grey */
+            --background-dark: #121212;
+            --background-card: #1E1E1E;
+            --text-light: #E0E0E0;
+            --text-white: #FFFFFF;
+            --shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--background-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Teko', sans-serif;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 { font-size: 5rem; }
+        h2 { font-size: 3.5rem; text-align: center; margin-bottom: 3rem; }
+        h3 { font-size: 2rem; }
+
+        p { margin-bottom: 1.5rem; }
+        a { text-decoration: none; color: var(--primary-color); font-weight: 700; }
+
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        
+        .section-bg-darker {
+            background-color: #000;
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--background-dark);
+            padding: 1rem 2.5rem;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: #ffca28;
+            transform: translateY(-3px);
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-white);
+        }
+        
+        .logo span { color: var(--primary-color); }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav a {
+            color: var(--text-white);
+            padding: 0.5rem 1.5rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.4rem;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Hamburger Menu --- */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--text-white);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../../../assets/images/templates/freelance/Tall-Roller.jpg) no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        #hero .container {
+            max-width: 700px;
+        }
+
+        #hero h1 {
+            color: var(--text-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Services Section --- */
+        .services-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-card {
+            display: flex;
+            align-items: center;
+            background: var(--background-card);
+            border: 1px solid var(--secondary-color);
+            padding: 1.5rem 2.5rem;
+            transition: background 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            background: var(--secondary-color);
+        }
+
+        .service-card .service-details {
+            width: 100%;
+        }
+
+        .service-card .service-details h3 {
+            margin-bottom: 0.25rem;
+            font-size: 1.8rem;
+        }
+        
+        .service-card .service-details p {
+            margin-bottom: 0;
+            color: var(--text-light);
+        }
+
+        /* --- Uh Oh Section --- */
+        .uh-oh-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .uh-oh-image img {
+            width: 100%;
+            height: auto;
+            border: 3px solid var(--primary-color);
+        }
+
+        /* --- Why Choose Us Section --- */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 1rem;
+        }
+
+        .grid-item {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: var(--text-white);
+            text-align: left;
+        }
+
+        .grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 10%, transparent 50%);
+            transition: background 0.3s ease;
+        }
+        
+        .grid-item:hover::before {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 60%);
+        }
+
+        .grid-item .text-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .grid-item h3 {
+            color: var(--text-white);
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            margin-bottom: 0.5rem;
+        }
+        
+        .grid-item p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0;
+            line-height: 1.5;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .grid-item:hover p {
+            color: rgba(255,255,255,1);
+        }
+
+        .item-1 { background-image: url('../../../assets/images/templates/freelance/Wide-Reno-2.jpg'); grid-column: 1 / 3; }
+        .item-2 { background-image: url('../../../assets/images/templates/freelance/Wide-Drafting-1.jpg'); }
+        .item-3 { background-image: url('../../../assets/images/templates/freelance/Wide-Reno-6.jpg'); }
+        .item-4 { background-image: url('../../../assets/images/templates/freelance/Wide-Drafting-2.jpg'); grid-column: 2 / 4; }
+
+        /* --- Footer --- */
+        .main-footer {
+            background: #000;
+            color: var(--text-light);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .footer-right-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .designer-credit {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .template-copyright {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .footer-icon {
+            height: 23px;
+            vertical-align: -5px;
+            margin-left: 5px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .uh-oh-section {
+                gap: 2rem;
+            }
+            .why-us-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 300px);
+            }
+            .item-1, .item-4 {
+                grid-column: auto; /* Reset for mid-size screens */
+            }
+            .item-1 { grid-column: 1 / 3; }
+            .item-4 { grid-column: 1 / 3; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2.5rem; }
+            .logo { font-size: 2rem; }
+
+            .main-header .container {
+                position: relative;
+                justify-content: center;
+            }
+            
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.95);
+                padding: 1rem 0;
+            }
+
+            .main-nav.active {
+                display: block;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 1.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .uh-oh-section {
+                grid-template-columns: 1fr;
+            }
+
+            .uh-oh-image {
+                order: -1; /* Move image above text on mobile */
+                margin-bottom: 2rem;
+            }
+
+            .why-us-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .grid-item {
+                min-height: 250px;
+            }
+
+            .item-1, .item-4 {
+                grid-column: auto;
+            }
+            
+            .main-footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-right-content {
+                align-items: center;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Apex<span>Reno</span></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#fix-it">Fix-It</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container">
+                <h1>Transforming Spaces with Precision</h1>
+                <p>Expert renovations for kitchens, bathrooms, basements, and more. We bring your vision to life with quality craftsmanship and attention to detail.</p>
+                <a href="#contact" class="button">Get a Free Estimate</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-bg-darker">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-stack">
+                    <div class="service-card">
+                        <div class="service-details">
+                            <h3>Full Kitchen & Bathroom Renovations</h3>
+                            <p>Complete overhauls, from design and demolition to installation and finishing touches.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-details">
+                            <h3>Interior & Exterior Painting</h3>
+                            <p>Professional painting services for a flawless finish, inside and out.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-details">
+                            <h3>Custom Carpentry & Trim</h3>
+                            <p>Bespoke shelving, built-ins, wainscoting, and detailed trim work.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-details">
+                            <h3>Flooring & Tile Installation</h3>
+                            <p>Expert installation of hardwood, laminate, vinyl, and ceramic tiles.</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-details">
+                            <h3>Drywall, Taping & Plastering</h3>
+                            <p>Seamless wall and ceiling finishing, from new installations to repairs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fix-It Section -->
+        <section id="fix-it">
+            <div class="container uh-oh-section">
+                <div class="uh-oh-text">
+                    <h2>DIY Gone Wrong?</h2>
+                    <p>It happens. That weekend project turned into a week-long headache. We specialize in correcting DIY mishaps, from uneven tiling to questionable plumbing. We'll get your project back on track and finish it with the professional quality it deserves.</p>
+                    <a href="#contact" class="button">Request a Rescue</a>
+                </div>
+                <div class="uh-oh-image">
+                    <img src="../../../assets/images/templates/freelance/Uh-Oh.jpg" alt="A poorly done home renovation project.">
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="why-us">
+            <div class="container">
+                <h2>Why Choose Us?</h2>
+                <div class="why-us-grid">
+                    <div class="grid-item item-1">
+                        <div class="text-content">
+                            <h3>Quality Materials</h3>
+                            <p>We use only durable, high-quality materials to ensure your renovation stands the test of time.</p>
+                        </div>
+                    </div>
+                    <div class="grid-item item-2">
+                        <div class="text-content">
+                            <h3>Expert Planning</h3>
+                            <p>Meticulous planning and clear communication from start to finish.</p>
+                        </div>
+                    </div>
+                    <div class="grid-item item-3">
+                        <div class="text-content">
+                            <h3>Clean & Tidy</h3>
+                            <p>We respect your space, ensuring a clean and organized worksite every day.</p>
+                        </div>
+                    </div>
+                    <div class="grid-item item-4">
+                        <div class="text-content">
+                            <h3>On Time, On Budget</h3>
+                            <p>We stick to our timelines and provide transparent pricing with no hidden fees.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-bg-darker">
+            <div class="container" style="text-align: center; max-width: 700px;">
+                <h2>Let's Build Something Great</h2>
+                <p>Ready to start your renovation project? Have a question? Reach out today and let's discuss how we can bring your ideas to life.</p>
+                <a href="#" class="button">Contact Us Now</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2025 Apex Renovations. All Rights Reserved.</p>
+        <div class="footer-right-content">
+            <p class="designer-credit">Website lovingly <a href="https://dwtlab.online" style="text-decoration: none;"><span style="color: #e37705; font-size: 1.1em;">DesignedWithTrash</span> <img src="../../../assets/images/dwt-icon.png" alt="DWTlabs icon" class="footer-icon"></a></p>
+            <p class="template-copyright">Template Copyright &copy; 2025 DesignedWithTrash Labs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const mainNav = document.querySelector('.main-nav');
+
+        hamburger.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
